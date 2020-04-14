@@ -1,0 +1,21 @@
+vector<int> Solution::allFactors(int A) {
+    
+    vector<int> ans;
+    int s = sqrt(A);
+    
+    for(int i=s; i>0; i--){
+        
+        if(A%i == 0){
+            
+            if(i != A/i){
+                ans.insert(ans.begin(), i);
+                ans.push_back(A/i);
+            }
+            else{
+                ans.insert(ans.begin(), i);
+            }
+        }
+    }
+    
+    return ans;
+}

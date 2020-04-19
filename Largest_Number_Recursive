@@ -1,0 +1,72 @@
+
+#include<iostream>
+#include<string>
+#include<cstring>
+using namespace std;
+
+void findMaxUtil(string *num, int n, string &max, string output,bool *visited, int size, int &count)
+{
+    
+    if(n == 0){
+        if(output > max)
+            max = output;
+            
+        cout << output << endl;
+        count++;
+    }
+    
+    for(int i=0; i<size; i++){
+        
+        if(!visited[i]){
+            output += num[i];
+            visited[i] = true;
+            findMaxUtil(num, n-1, max, output,visited, size, count);
+            visited[i] = false;
+            
+            output = output.substr(0, output.length()-num[i].length());
+        }
+    }
+}
+
+
+string findMaxNum(int *arr,int n){
+	
+	string *num = new string[n];
+	
+	for(int i=0; i<n; i++){
+		//cout << to_string(arr[i])<< endl;
+		num[i] = to_string(arr[i]);
+	}
+	
+	/*for(int i=0; i<n; i++){
+		cout << num[i] << endl;
+	}
+	*/
+	
+	string max = "";
+	
+	bool *visited = new bool[n];
+	
+	memset(visited, false, n);
+	
+  
+  cout << "\n possible permutation \n";
+	int count = 0 ;
+	findMaxUtil(num, n, max, "", visited, n, count);
+	
+	cout << " \n\n Total Permutation Possible : " << count ;
+	
+	return max;		
+}
+
+
+int main()  
+{ 
+    int arr[] = {1, 2, 3, 9, 56, 97}; 
+      
+    int n = sizeof(arr)/sizeof(arr[0]); 
+      
+    cout<<"\n\n answer : " << findMaxNum(arr,n); 
+      
+    return 0; 
+}

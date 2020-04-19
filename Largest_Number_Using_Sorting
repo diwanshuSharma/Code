@@ -1,0 +1,46 @@
+#include<iostream>
+#include<bits/stdc++.h>
+using namespace std;
+
+int mySort(string s1, string s2){
+    
+    return s1.append(s2) > s2.append(s1);
+}
+
+
+void findMaxNum(int *arr,int n){
+	
+	string *num = new string[n];
+	
+	for(int i=0; i<n; i++){
+		//cout << to_string(arr[i])<< endl;
+		num[i] = to_string(arr[i]);
+	}
+	
+	for(int i=0; i<n; i++){
+		cout << num[i] << " ";
+	}
+	
+	
+	sort(num, num+n, mySort);
+	
+	cout << endl;
+	
+	for(int i=0; i<n; i++){
+		cout << num[i] << " ";
+	}
+}
+
+
+int main()  
+{ 
+    int arr[] = {1, 2, 3, 9, 56, 97}; 
+      
+    int n = sizeof(arr)/sizeof(arr[0]); 
+      
+    findMaxNum(arr,n);
+    
+    //cout<<"\n\n answer : " << findMaxNum(arr,n); 
+      
+    return 0; 
+}

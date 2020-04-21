@@ -1,0 +1,25 @@
+bool sortNumber( string s1, string s2 ){
+
+    return s1.append(s2).compare( s2.append(s1) )>0;
+
+}
+
+string Solution::largestNumber(const vector<int> &A) {
+    
+    vector<string> ans;
+    
+    for(auto i=A.begin(); i != A.end(); i++)
+        ans.push_back(to_string(*i));
+    
+    sort(ans.begin(), ans.end(), sortNumber);
+    
+    string s = "";
+    
+    for(auto i=ans.begin(); i != ans.end(); i++)
+        s.append(*i);
+        
+    if(s[0] == '0')
+        return "0";
+        
+    return s;
+}
